@@ -9,7 +9,11 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
 # LangSmith tracking
-os.environ['LANGCHAIN_API_KEY'] = os.getenv("LANGCHAIN_API_KEY")
+langchain_api_key = os.getenv("LANGCHAIN_API_KEY")
+if langchain_api_key:
+    os.environ['LANGCHAIN_API_KEY'] = langchain_api_key
+else:
+    st.warning("LANGCHAIN_API_KEY not found in .env file. Please set it.")
 os.environ['LANGCHAIN_TRACING_V2'] = "true"
 os.environ['LANGCHAIN_PROJECT'] = "Chatbot_ST_LC"
 
