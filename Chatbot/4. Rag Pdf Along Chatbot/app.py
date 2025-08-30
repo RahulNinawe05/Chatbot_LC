@@ -113,7 +113,10 @@ if api_key:
                 st.session_state.store[session_id]=ChatMessageHistory()
             return st.session_state.store[session_id]
         
-        conversational_rag_chain = RunnableWithMessageHistory(
+
+        # RunnableWithMessageHistory Ye ek wrapper (cover) hai jo rag_chain ko memory deta hai.
+        # Matlab: Ab chain past conversation ko yaad rakhega.
+        conversational_rag_chain = RunnableWithMessageHistory(  
             rag_chain,
             get_session_history,
             input_messages_key="input",
