@@ -5,7 +5,7 @@ import streamlit as st
 from langchain.chains.retrieval import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain 
 from langchain_community.vectorstores import FAISS
-from langchain_community.chat_message_histories import ChatMessageHistory # 
+from langchain_community.chat_message_histories import ChatMessageHistory 
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain.chains import create_history_aware_retriever
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -23,9 +23,13 @@ load_dotenv()
 os.environ['HF_TOKEN']= os.getenv("HF_TOKEN") 
 Embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
+# set page configure
+st.set_page_config(page_title="Conversation Rag Chatbot",
+                   page_icon="🦜",
+)
 # set up  streamlit  app
 st.title("Conversationl Rag With PDF Uploads And Chat History")
-st.write("Upload Pdf's FILE")
+st.write("Upload Pdf's File's")
 
 # input the Groq Api Key
 api_key = st.text_input("Enter Your Groq Api Key:",type="password")
@@ -44,11 +48,13 @@ if api_key:
     
     uploaded_files=st.file_uploader("Choose a pdf file", type="pdf", accept_multiple_files=True)
 
+    folder = r"E:\1-Q&A Chatbot\Chatbot\4. Rag Pdf Along Chatbot"
+    
     # process uploaded pdf's
     if uploaded_files:
         documents=[]
         for uploaded_file in uploaded_files:
-            temp_pdf=f"./temp.pdf"
+            temp_pdf=f"{folder}\\temp.pdf"
             with open(temp_pdf, "wb") as file:
                 file.write(uploaded_file.getvalue())
                 file_name=uploaded_file.name
