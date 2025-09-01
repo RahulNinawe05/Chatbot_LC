@@ -19,3 +19,6 @@ wikipedia
 arxiv
 faiss-cpu
 pdfplumber
+mysql-connector-python
+SQLAlchemy
+pymysql
