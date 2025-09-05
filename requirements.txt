@@ -22,3 +22,7 @@ pdfplumber
 mysql-connector-python
 SQLAlchemy
 pymysql
+validators==0.28.1
+youtube_transcript_api
+unstructured
+pytube
